@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vijayeshnanda Vasanthakumar | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0b0d12;
+  --ink2: #13161e;
+  --surface: #181c27;
+  --surface2: #1f2436;
+  --muted: #3a4058;
+  --line: rgba(255,255,255,0.07);
+  --text: #e8eaf0;
+  --text2: #8b91a8;
+  --accent: #7f8fff;
+  --accent2: #5ee7c8;
+  --glow: rgba(127,143,255,0.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--ink);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Star field */
+#stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(11,13,18,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--text);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.nav-brand span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.875rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+main {
+  position: relative;
+  z-index: 1;
+  padding-top: 80px;
+}
+
+/* Hero */
+.hero {
+  min-height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent2);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--accent2);
+}
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+}
+
+h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-sub {
+  font-size: 1.15rem;
+  color: var(--text2);
+  max-width: 520px;
+  line-height: 1.75;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0b0d12;
+}
+
+.btn-primary:hover {
+  background: #a0aaff;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--muted);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* About section */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 3rem;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 3rem;
+  color: var(--text);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-photo::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+}
+
+.about-photo svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.3;
+}
+
+.about-text p {
+  color: var(--text2);
+  line-height: 1.9;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.about-text p:last-of-type { margin-bottom: 2rem; }
+
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.skill-tag {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--text2);
+  font-size: 0.8rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 100px;
+  font-weight: 400;
+}
+
+.skill-tag.accent-tag {
+  background: rgba(127,143,255,0.1);
+  border-color: rgba(127,143,255,0.25);
+  color: var(--accent);
+}
+
+/* Divider */
+.divider {
+  border: none;
+  border-top: 1px solid var(--line);
+  margin: 0 3rem;
+}
+
+/* Projects grid */
+.projects-intro {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 6rem 3rem 3rem;
+}
+
+.project-cards-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 3rem 8rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.project-category-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-category-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.card-hack::before { background: linear-gradient(90deg, #ff7f7f, #ffb347); }
+.card-astro::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
+.card-other::before { background: linear-gradient(90deg, #7fe8c8, #5ec8a8); }
+
+.project-category-card:hover {
+  border-color: var(--muted);
+  transform: translateY(-4px);
+  background: var(--surface2);
+}
+
+.project-category-card:hover::before { opacity: 1; }
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.card-hack .card-icon { background: rgba(255,127,127,0.12); }
+.card-astro .card-icon { background: rgba(127,143,255,0.12); }
+.card-other .card-icon { background: rgba(94,231,200,0.12); }
+
+.card-count {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.card-hack .card-count { color: #ff9999; }
+.card-astro .card-count { color: var(--accent); }
+.card-other .card-count { color: var(--accent2); }
+
+.project-category-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.project-category-card p {
+  color: var(--text2);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  font-weight: 300;
+  margin: 0;
+}
+
+.card-arrow {
+  margin-top: auto;
+  color: var(--text2);
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: gap 0.2s;
+}
+
+.project-category-card:hover .card-arrow {
+  gap: 0.7rem;
+  color: var(--text);
+}
+
+/* Resume section */
+.resume-card-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 3rem 8rem;
+}
+
+.resume-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.resume-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.resume-card:hover {
+  border-color: var(--muted);
+  transform: translateY(-2px);
+}
+
+.resume-card:hover::before { opacity: 1; }
+
+.resume-card h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.resume-card p {
+  color: var(--text2);
+  font-size: 0.95rem;
+  font-weight: 300;
+  max-width: 420px;
+}
+
+.resume-card .btn { flex-shrink: 0; }
+
+/* Contact */
+.contact-section {
+  background: var(--ink2);
+  border-top: 1px solid var(--line);
+  padding: 6rem 3rem;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+}
+
+.contact-section p {
+  color: var(--text2);
+  font-size: 1rem;
+  font-weight: 300;
+  margin-bottom: 2.5rem;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text2);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--muted);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.contact-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+footer {
+  background: var(--ink);
+  border-top: 1px solid var(--line);
+  text-align: center;
+  padding: 2rem;
+  color: var(--text2);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero, .section, .projects-intro, .project-cards-grid, .resume-card-wrapper { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-photo { aspect-ratio: 1/1; }
+  .project-cards-grid { grid-template-columns: 1fr; }
+  .resume-card { grid-template-columns: 1fr; }
+  .divider { margin: 0 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<nav>
+  <a href="index.html" class="nav-brand">Vijayesh<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="pages/resume.html">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">Astrophysics • Machine Learning • Software Development</div>
+    <h1>Hey, I'm<br><em>Vijayeshnanda Vasanthakumar</em></h1>
+    <p class="hero-sub">Astronomy enthusiast and computer science student interested in creating computational models for astronomical phenomena.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn btn-primary">View My Work</a>
+      <a href="pages/resume.html" class="btn btn-outline">View Resume</a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- About -->
+  <section id="about" class="section">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Researcher. Data Analyst.<br>Problem Solver.</h2>
+    <div class="about-grid">
+      <div class="about-photo">
+        <img src="external/vijayesh.jpeg" alt="Vijayeshnanda Vasanthakumar">
+      </div>
+      <div class="about-text">
+        <p>I'm a high school student passionate about astrophysics, computer science, and machine learning. I enjoy combining scientific curiosity with technical skills to investigate complex problems, whether that's classifying stars, predicting earthquakes, or modeling astronomical phenomena.</p>
+        <p>My experience includes machine learning, data analysis, software development, and research. I've built predictive models using Random Forests, developed web applications, participated in hackathons, and contributed to STEM outreach initiatives that bring science and technology to younger students.</p>
+        <p>Outside of coding and research, I lead STEM organizations, participate in Science Olympiad, perform in out of school band, and spend time reading about space and physics</p>
+
+        <p class="section-label" style="margin-top: 2rem; margin-bottom: 0.75rem;">Technical Skills</p>
+        <div class="skills-row">
+            <span class="skill-tag accent-tag">Machine Learning</span>
+            <span class="skill-tag accent-tag">Data Science</span>
+            <span class="skill-tag accent-tag">Git</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">Astrophysics</span>
+            <span class="skill-tag">Research</span>
+            <span class="skill-tag">Scientific Computing</span>
+            <span class="skill-tag">Data Analysis</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Projects -->
+  <div id="projects" class="projects-intro">
+    <p class="section-label">Featured Work</p>
+    <h2 class="section-title">Projects</h2>
+  </div>
+
+  <div class="project-cards-grid">
+    <a href="pages/hackathon.html" class="project-category-card card-hack">
+      <div class="card-icon"></div>
+      <span class="card-count">2 Projects</span>
+      <h3>Hackathon Projects</h3>
+      <p>Rapidly developed applications and prototypes built during hackathons, combining creativity, teamwork, and technical problem-solving.</p>
+      <div class="card-arrow">Explore &#8594;</div>
+    </a>
+
+    <a href="pages/astronomy.html" class="project-category-card card-astro">
+      <div class="card-icon"></div>
+      <span class="card-count">2 Projects</span>
+      <h3>Astronomy Projects</h3>
+      <p>From orbital mechanics to telescope instrumentation — where engineering meets the cosmos.</p>
+      <div class="card-arrow">Explore &#8594;</div>
+    </a>
+
+    <a href="pages/other.html" class="project-category-card card-other">
+      <div class="card-icon"></div>
+      <span class="card-count">2 Projects</span>
+      <h3>Other Projects</h3>
+      <p>Coursework, independent builds, and everything that doesn't fit a single label.</p>
+      <div class="card-arrow">Explore &#8594;</div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- Resume -->
+  <div class="section" style="padding-top: 4rem;">
+    <p class="section-label">Career</p>
+    <h2 class="section-title" style="margin-bottom: 2rem;">Resume</h2>
+  </div>
+
+  <div class="resume-card-wrapper" style="padding-top: 0;">
+    <a href="pages/resume.html" class="resume-card">
+      <div>
+        <h3>Vijayeshnanda Vasanthakumar — Resume</h3>
+        <p>Emerald High School Junior, Las Positas Dual Enrollment Student</p>
+      </div>
+      <span class="btn btn-primary">View Full Resume &#8594;</span>
+    </a>
+  </div>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <h2>Let's Connect.</h2>
+    <p>Interested in research opportunities, software development projects, STEM outreach, and collaborations in science and technology.</p>
+    <div class="contact-links">
+      <a href="mailto:vijayesh.vasanth@gmail.com" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        vijayesh.vasanth@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/vijayeshnanda-vasanthakumar/" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com/Vijayesh314" class="contact-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Built by Vijayeshnanda Vasanthakumar &nbsp;·&nbsp; Aspiring Astrophysicist and Software Developer &nbsp;·&nbsp; 2026
+</footer>
+
+<script>
+const canvas = document.getElementById('stars');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function makeStars() {
+  stars = [];
+  for (let i = 0; i < 180; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.2,
+      a: Math.random() * 0.6 + 0.1,
+      s: Math.random() * 0.3 + 0.05
+    });
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const now = Date.now() / 1000;
+  stars.forEach(s => {
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(200,210,255,${s.a * (0.7 + 0.3 * Math.sin(now * s.s + s.x))})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+
+resize();
+makeStars();
+draw();
+window.addEventListener('resize', () => { resize(); makeStars(); });
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
